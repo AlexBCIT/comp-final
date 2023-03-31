@@ -2,6 +2,6 @@
 
 - Nextjs
 - TypeScript
--Prisma
--Tailwind
+- Prisma
+- Tailwind CSS
 - PostgreSQL
