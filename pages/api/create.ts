@@ -13,18 +13,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return
     }
 
-    // const prismaUser = await prisma.user.findUnique({
-    //     where: { email: session.user.email },
-    // })
-
-    const userEmail = session.user?.email; // use optional chaining to ensure that userEmail is not null or undefined
-    if (!userEmail) {
-        // handle the case where userEmail is null or undefined, for example by throwing an error or redirecting to a login page
-    }
     const prismaUser = await prisma.user.findUnique({
-        where: { email: userEmail },
-    });
-
+        where: { email: session?.user?.email },
+    })
 
     console.log(prismaUser)
 
