@@ -2,6 +2,7 @@ import { prisma } from "../../lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
+import { disconnect } from "process";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { title, content } = req.body
@@ -14,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const prismaUser = await prisma.user.findUnique({
-        where: { email: session?.user?.email },
+        where: { email: session?.user?.email! },
     })
 
     console.log(prismaUser)
